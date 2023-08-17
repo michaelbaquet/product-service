@@ -83,6 +83,18 @@ jobs:
       run: |
         aws ecr describe-repositories
 
+    - name: Describe Specific ECR Image
+      run: |
+        aws ecr describe-images --repository-name devops-proj-ecr
+
+    - name: Describe IAM User
+      run: |
+        aws iam get-user --user-name github-actions
+
+    - name: Check Docker Version
+      run: |
+        docker --version
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
