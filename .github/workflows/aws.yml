@@ -94,6 +94,12 @@ jobs:
     - name: Check Docker Version
       run: |
         docker --version
+      
+    - name: Check Build variable
+      run: echo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: print registry
+      run: echo ${{steps.login-ecr.outputs.registry}}
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
