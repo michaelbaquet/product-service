@@ -110,6 +110,8 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
+        echo "It's authenticating!!!"
+        aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 809567559836.dkr.ecr.us-west-1.amazonaws.com
         docker build -t 809567559836.dkr.ecr.us-west-1.amazonaws.com/devops-proj-ecr:product-service .
         docker push 809567559836.dkr.ecr.us-west-1.amazonaws.com/devops-proj-ecr:product-service
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
